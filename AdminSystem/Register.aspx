@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="_1_DataEntry" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="UserRegister" %>
 
 <!DOCTYPE html>
 
@@ -44,7 +44,7 @@
         <div>
 
                 <asp:Label runat="server" AssociatedControlID="txtState">State:</asp:Label>
-                <asp:TextBox ID="TxtState" runat="server" CssClass="form-control" required></asp:TextBox>   <br> <br />
+                <asp:TextBox ID="txtState" runat="server" CssClass="form-control" required></asp:TextBox>   <br> <br />
             </div>
 
             <div>
@@ -58,7 +58,11 @@
             <div>
                 <asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="btnRegister_Click" />
             </div>
-        
+        <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+            
+            <div>
+                <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Login.aspx" Text="Already have an account? Login here." />
+            </div>
 
 
 

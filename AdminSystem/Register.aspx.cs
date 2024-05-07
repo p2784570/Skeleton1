@@ -73,7 +73,7 @@ public partial class UserRegister : System.Web.UI.Page
 
     {
 
-        string connectionString = ConfigurationManager.ConnectionStrings["YourConnectionStringName"].ConnectionString;
+        string connectionString = "Data Source=v00egd00002l.lec-admin.dmu.ac.uk;Initial Catalog=p2784570;User ID=p2784570;Password=Simonyadav@123#88;Connect Timeout=30;";
 
 
 

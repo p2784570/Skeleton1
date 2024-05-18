@@ -147,5 +147,250 @@ namespace Testing2
             //test to see the two values are the same
             Assert.AreEqual(AProduct.Quantity, TestData);
         }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //create an instane of the class we want to create
+            clsProduct AProduct = new clsProduct();
+            //create a boolean variable to store the result of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+        }
+        [TestMethod]
+        public void TestProductIdFound()
+        {
+            //create instane of the class
+            clsProduct AProduct = new clsProduct();
+            //create boolean variable to store the result of the search
+            Boolean Found = false;
+            //create boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //check the Product id property
+            if (AProduct.ProductId != 20)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestCompanyFound()
+        {
+            //create instane of the class
+            clsProduct AProduct = new clsProduct();
+            //create boolean variable to store the result of the search
+            Boolean Found = false;
+            //create boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //check the Company property
+            if (AProduct.Company != "Test Company")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestModelNameFound()
+        {
+            //create instane of the class
+            clsProduct AProduct = new clsProduct();
+            //create boolean variable to store the result of the search
+            Boolean Found = false;
+            //create boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //check the Modelname property
+            if (AProduct.ModelName != "Test ModelName")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestRamFound()
+        {
+            //create instane of the class
+            clsProduct AProduct = new clsProduct();
+            //create boolean variable to store the result of the search
+            Boolean Found = false;
+            //create boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //check the ram property
+            if (AProduct.Ram != "16GB")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestInternalStorage()
+        {
+            //create instane of the class
+            clsProduct AProduct = new clsProduct();
+            //create boolean variable to store the result of the search
+            Boolean Found = false;
+            //create boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //check the Internal storage property
+            if (AProduct.InternalStorage != "1TB")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestDisplayFound()
+        {
+            //create instane of the class
+            clsProduct AProduct = new clsProduct();
+            //create boolean variable to store the result of the search
+            Boolean Found = false;
+            //create boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //check the Display property
+            if (AProduct.Display != "10 Inch")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestCameraFound()
+        {
+            //create instane of the class
+            clsProduct AProduct = new clsProduct();
+            //create boolean variable to store the result of the search
+            Boolean Found = false;
+            //create boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //check the camera property
+            if (AProduct.Camera != "68Px")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestNetworkTypeFound()
+        {
+            //create instane of the class
+            clsProduct AProduct = new clsProduct();
+            //create boolean variable to store the result of the search
+            Boolean Found = false;
+            //create boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //check the Network type property
+            if (AProduct.NetworkType != "5G")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestSimTypeFound()
+        {
+            //create instane of the class
+            clsProduct AProduct = new clsProduct();
+            //create boolean variable to store the result of the search
+            Boolean Found = false;
+            //create boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //check the sim type property
+            if (AProduct.SimType != "3")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestPriceFound()
+        {
+            //create instane of the class
+            clsProduct AProduct = new clsProduct();
+            //create boolean variable to store the result of the search
+            Boolean Found = false;
+            //create boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //check the price property
+            if (AProduct.Price != "£1500")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestQuantityFound()
+        {
+            //create instane of the class
+            clsProduct AProduct = new clsProduct();
+            //create boolean variable to store the result of the search
+            Boolean Found = false;
+            //create boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductId = 20;
+            //invoke the method
+            Found = AProduct.Find(ProductId);
+            //check the Quantity property
+            if (AProduct.Quantity != 80)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
     }
 }

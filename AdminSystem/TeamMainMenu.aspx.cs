@@ -29,4 +29,8 @@ public partial class TeamMainMenu : System.Web.UI.Page
         //redirect to the user to the login page
         Response.Redirect("Login.aspx");
     }
+    protected void btnManageAccount_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ManageAccount.aspx");
+    }
 }

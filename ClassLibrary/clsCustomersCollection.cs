@@ -43,7 +43,7 @@ namespace ClassLibrary
             // Populate the list with the data table
             PopulateArray(DB);
         }
-
+       
         // Method to populate the list based on the data table in the parameter DB
         void PopulateArray(clsDataConnection DB)
         {
@@ -79,6 +79,32 @@ namespace ClassLibrary
                 return true;
             }
             return false;
+        }
+        public ClsCustomer FindById(int customerID)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerID", customerID);
+            DB.Execute("sproc_tblCustomer_FindByCustomerID");
+
+            if (DB.Count == 1)
+            {
+                ClsCustomer customer = new ClsCustomer();
+                customer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
+                customer.FirstName = Convert.ToString(DB.DataTable.Rows[0]["FirstName"]);
+                customer.LastName = Convert.ToString(DB.DataTable.Rows[0]["LastName"]);
+                customer.Email = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                customer.Phone = DB.DataTable.Rows[0]["Phone"] != DBNull.Value ? (int?)Convert.ToInt32(DB.DataTable.Rows[0]["Phone"]) : null;
+                customer.Address = Convert.ToString(DB.DataTable.Rows[0]["Address"]);
+                customer.City = Convert.ToString(DB.DataTable.Rows[0]["City"]);
+                customer.State = Convert.ToString(DB.DataTable.Rows[0]["State"]);
+                customer.Country = Convert.ToString(DB.DataTable.Rows[0]["Country"]);
+                customer.Password = Convert.ToString(DB.DataTable.Rows[0]["Password"]);
+                return customer;
+            }
+            else
+            {
+                return null;
+            }
         }
         public int Add()
         {
@@ -117,14 +143,10 @@ namespace ClassLibrary
         }
         public void Delete(int customerID)
         {
-            // Delete a record from the database based on the CustomerID
             clsDataConnection DB = new clsDataConnection();
-            // Set the parameter for the stored procedure
             DB.AddParameter("@CustomerID", customerID);
-            // Execute the stored procedure
             DB.Execute("sproc_tblCustomer_Delete");
         }
-
         public void Update()
         {
             if (string.IsNullOrEmpty(mThisCustomer.Password))

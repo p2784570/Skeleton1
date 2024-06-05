@@ -10,7 +10,7 @@
 
     <form id="form1" runat="server">
         <p>
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; top: 670px; position: absolute; right: 603px" Text="Cancel" height="35px" width="68px" />
+            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; top: 679px; position: absolute; right: 424px; left: 398px;" Text="Cancel" height="35px" width="68px" OnClick="btnCancel_Click" />
         </p>
         <p>
             <asp:Label ID="lblProductId" runat="server" style="z-index: 1; left: 49px; top: 84px; position: absolute; right: 852px; height: 27px;" Text="Product ID :" width="165px"></asp:Label>
@@ -42,7 +42,8 @@
         <asp:TextBox ID="txtPrice" runat="server" style="z-index: 1; left: 242px; top: 554px; position: absolute; width: 243px"></asp:TextBox>
         <asp:TextBox ID="txtQuantity" runat="server" style="z-index: 1; left: 241px; top: 616px; position: absolute; width: 245px"></asp:TextBox>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 95px; top: 675px; position: absolute; bottom: 182px"></asp:Label>
-        <asp:Button ID="btnDone" runat="server" OnClick="btnDone_Click" style="z-index: 1; left: 226px; top: 670px; position: absolute" Text="Done" />
+        <asp:Button ID="btnDone" runat="server" OnClick="btnDone_Click" style="z-index: 1; left: 269px; top: 676px; position: absolute; height: 38px; width: 72px;" Text="Done" />
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 586px; top: 85px; position: absolute" Text="Find" />
     </form>
 </body>
 </html>

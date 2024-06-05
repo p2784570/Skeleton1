@@ -33,4 +33,9 @@ public partial class TeamMainMenu : System.Web.UI.Page
     {
         Response.Redirect("ManageAccount.aspx");
     }
+    protected void btnAddReview_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AddReview.aspx");
+    }
+
 }

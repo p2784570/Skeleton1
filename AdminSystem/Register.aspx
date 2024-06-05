@@ -7,7 +7,7 @@
     <title></title>
     <style type="text/css">
         #form1 {
-            height: 22px;
+            height: 23px;
         }
         .form-control {
             margin-left: 29px;
@@ -15,166 +15,53 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-       <div>
+ <form id="form1" runat="server">
+        <div>
             <h2>Register</h2>
-            <div>
-                <asp:Label runat="server" AssociatedControlID="txtFirstName">First Name:</asp:Label>
-                <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" required></asp:TextBox> <br> <br />
-            </div>
-            <div>
-                <asp:Label runat="server" AssociatedControlID="txtLastName">Last Name:</asp:Label>
-                <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" required></asp:TextBox>  <br> <br />
-           <div>
-                <asp:Label runat="server" AssociatedControlID="txtEmail">Email:</asp:Label>
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" required></asp:TextBox>   <br> <br />
-            </div>
-        <div>
-                <asp:Label runat="server" AssociatedControlID="txtPhone">Phone:</asp:Label>
-                <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" required></asp:TextBox>   <br> <br />
-            </div>
-        <div>
-                <asp:Label runat="server" AssociatedControlID="txtAddress">Address:</asp:Label>
-                <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control" required></asp:TextBox>   <br> <br />
-            </div>
-        <div>
-                <asp:Label runat="server" AssociatedControlID="txtCity">City:</asp:Label>
-                <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" required></asp:TextBox>   <br> <br />
-            </div>
-        <div>
-
-                <asp:Label runat="server" AssociatedControlID="txtState">State:</asp:Label>
-                <asp:TextBox ID="txtState" runat="server" CssClass="form-control" required></asp:TextBox>   <br> <br />
-            </div>
-
-            <div>
-         <asp:Label runat="server" AssociatedControlID="txtCounty">County:</asp:Label>
-         <asp:TextBox ID="txtCounty" runat="server" CssClass="form-control" required></asp:TextBox>   <br> <br />
-     </div>
-            <div>
-         <asp:Label runat="server" AssociatedControlID="txtPassword">Password:</asp:Label>
-         <asp:TextBox ID="txtpassword" runat="server" CssClass="form-control" required></asp:TextBox>   <br> <br />
-     </div>
-            <div>
-                <asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="btnRegister_Click" />
-            </div>
-        <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-            
-            <div>
-                <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Login.aspx" Text="Already have an account? Login here." />
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td><asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><asp:TextBox ID="txtLastName" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><asp:TextBox ID="txtEmail" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td><asp:TextBox ID="txtPhone" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td><asp:TextBox ID="txtAddress" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td><asp:TextBox ID="txtCity" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>State:</td>
+                    <td><asp:TextBox ID="txtState" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Country:</td>
+                    <td><asp:TextBox ID="txtCountry" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="btnRegister_Click" /></td>
+                </tr>
+            </table>
         </div>
-      
-
-        
-
-
-        
-
     </form>
-  
-</body>
-</html>
+    </body>
+    </html>

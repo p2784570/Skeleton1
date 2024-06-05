@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -16,122 +17,68 @@ public partial class UserRegister : System.Web.UI.Page
     }
 
     protected void btnRegister_Click(object sender, EventArgs e)
-
     {
+        // Clear the message label
+        lblMessage.Text = "";
 
-        string firstName = txtFirstName.Text;
-
-        string lastName = txtLastName.Text;
-
-        string email = txtEmail.Text;
-
-        string phone = txtPhone.Text;
-
-        string address = txtAddress.Text;
-
-        string city = txtCity.Text;
-
-        string state = txtState.Text;
-
-        string county = txtCounty.Text;
-
-        string password = txtpassword.Text;
-
-
-
-        // Call a method to save the user data
-
-        bool registrationSuccessful = RegisterUser(firstName, lastName, email, phone, address, city, state, county, password);
-
-
-
-        if (registrationSuccessful)
-
+        // Create a new customer instance
+        ClsCustomer newCustomer = new ClsCustomer
         {
+            FirstName = txtFirstName.Text.Trim(),
+            LastName = txtLastName.Text.Trim(),
+            Email = txtEmail.Text.Trim(),
+            Phone = string.IsNullOrWhiteSpace(txtPhone.Text) ? (int?)null : Convert.ToInt32(txtPhone.Text),
+            Address = txtAddress.Text.Trim(),
+            City = txtCity.Text.Trim(),
+            State = txtState.Text.Trim(),
+            Country = txtCountry.Text.Trim(),
+            Password = txtPassword.Text.Trim()
+        };
 
-            // Redirect to the login page with a success message
-
-            Response.Redirect("Login.aspx?registration=success");
-
+        // Validate customer inputs
+        string validationMessage = newCustomer.Valid(newCustomer.FirstName, newCustomer.LastName, newCustomer.Email, newCustomer.Phone.ToString(), newCustomer.Address, newCustomer.City, newCustomer.State, newCustomer.Country, newCustomer.Password);
+        if (validationMessage != "")
+        {
+            lblMessage.Text = validationMessage;
+            lblMessage.ForeColor = System.Drawing.Color.Red;
+            return;
         }
 
+        // Check if the email is already registered
+        ClsCustomersCollection customersCollection = new ClsCustomersCollection();
+        if (customersCollection.IsEmailRegistered(newCustomer.Email))
+        {
+            lblMessage.Text = "The email address is already registered.";
+            lblMessage.ForeColor = System.Drawing.Color.Red;
+            return;
+        }
+
+        // Add the new customer to the collection and save to database
+        customersCollection.ThisCustomer = newCustomer;
+        int customerId = customersCollection.Add();
+        if (customerId > 0)
+        {
+            lblMessage.Text = "Customer registered successfully!";
+            lblMessage.ForeColor = System.Drawing.Color.Green;
+            ClearForm();
+        }
         else
-
         {
-
-            // Show an error message
-
             lblMessage.Text = "Registration failed. Please try again.";
-
+            lblMessage.ForeColor = System.Drawing.Color.Red;
         }
-
     }
 
-
-
-    private bool RegisterUser(string firstName, string lastName, string email, string phone, string address, string city, string state, string country, string password)
-
+    private void ClearForm()
     {
-
-        string connectionString = "Data Source=v00egd00002l.lec-admin.dmu.ac.uk;Initial Catalog=p2784570;User ID=p2784570;Password=Simonyadav@123#88;Connect Timeout=30;";
-
-
-
-        using (SqlConnection con = new SqlConnection(connectionString))
-
-        {
-
-            string query = "INSERT INTO Users (FirstName, LastName, Email, Phone, Address, City, State, Country, Password) VALUES (@FirstName, @LastName, @Email, @Phone, @Address, @City, @State, @Country, @Password)";
-
-            SqlCommand cmd = new SqlCommand(query, con);
-
-            cmd.Parameters.AddWithValue("@FirstName", firstName);
-
-            cmd.Parameters.AddWithValue("@LastName", lastName);
-
-            cmd.Parameters.AddWithValue("@Email", email);
-
-            cmd.Parameters.AddWithValue("@Phone", phone);
-
-            cmd.Parameters.AddWithValue("@Address", address);
-
-            cmd.Parameters.AddWithValue("@City", city);
-
-            cmd.Parameters.AddWithValue("@State", state);
-
-            cmd.Parameters.AddWithValue("@Country", country);
-
-            cmd.Parameters.AddWithValue("@Password", password);
-
-
-
-            try
-
-            {
-
-                con.Open();
-
-                int rowsAffected = cmd.ExecuteNonQuery();
-
-                return rowsAffected > 0; // Registration successful if rows were affected
-
-            }
-
-            catch (Exception ex)
-
-            {
-
-                // Handle any exceptions
-
-                // For simplicity, we are not handling exceptions in this example
-
-                return false;
-
-            }
-
-        }
-
+        txtFirstName.Text = "";
+        txtLastName.Text = "";
+        txtEmail.Text = "";
+        txtPhone.Text = "";
+        txtAddress.Text = "";
+        txtCity.Text = "";
+        txtState.Text = "";
+        txtCountry.Text = "";
+        txtPassword.Text = "";
     }
-
 }
-

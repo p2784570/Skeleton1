@@ -7,24 +7,24 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+   <form id="form1" runat="server">
         <div>
             <h2>Login</h2>
-            <div>
-                <asp:Label runat="server" AssociatedControlID="txtEmail">Email:</asp:Label>
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" required></asp:TextBox>
-            </div>
-            <div>
-                <asp:Label runat="server" AssociatedControlID="txtPassword">Password:</asp:Label>
-                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" required></asp:TextBox>
-            </div>
-            <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-            <div>
-                <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
-            </div>
-            <div>
-                <asp:HyperLink ID="lnkRegister" runat="server" NavigateUrl="~/Register.aspx" Text="Don't have an account? Register here." />
-            </div>
+            <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+            <table>
+                <tr>
+                    <td>Email:</td>
+                    <td><asp:TextBox ID="txtEmail" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" /></td>
+                </tr>
+            </table>
         </div>
     </form>
 </body>

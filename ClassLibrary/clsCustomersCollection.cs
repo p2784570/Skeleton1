@@ -107,6 +107,14 @@ namespace ClassLibrary
                 return -1; // Indicate failure
             }
         }
+        // Method to retrieve a customer by email
+        public ClsCustomer GetByEmail(string email)
+        {
+            // Optional: Perform any email validation here
+
+            // Search for the customer in the CustomersList by email
+            return CustomersList.FirstOrDefault(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+        }
         public void Delete(int customerID)
         {
             // Delete a record from the database based on the CustomerID

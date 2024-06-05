@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,44 +8,47 @@ using System.Web.UI.WebControls;
 
 public partial class UserLogin : System.Web.UI.Page
 {
+    
     protected void Page_Load(object sender, EventArgs e)
-    { 
-
+    {
+        // Optional: You can redirect logged-in users to another page
+        if (Session["LoggedInCustomerID"] != null)
+        {
+            Response.Redirect("~/Welcome.aspx");
+        }
     }
+
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        string username = txtEmail.Text;
-        string password = txtPassword.Text;
+        // Clear the message label
+        lblMessage.Text = "";
 
-        // Call a method to authenticate the user
-        bool isAuthenticated = AuthenticateUser(username, password);
+        // Retrieve the entered email and password
+        string email = txtEmail.Text.Trim();
+        string password = txtPassword.Text.Trim();
 
-        if (isAuthenticated)
+        // Validate the email and password
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            // Redirect to the dashboard or any other page
-            Response.Redirect("Dashboard.aspx");
+            lblMessage.Text = "Please enter both email and password.";
+            return;
+        }
+
+        // Create an instance of the customer collection
+        ClsCustomersCollection customersCollection = new ClsCustomersCollection();
+
+        // Retrieve the customer by email
+        ClsCustomer customer = customersCollection.GetByEmail(email);
+
+        // Check if the customer exists and the password matches
+        if (customer != null && customer.Password == password)
+        {
+            // Redirect to the Welcome page
+            Response.Redirect("Homepage.aspx");
         }
         else
         {
-            // Show an error message
-            lblMessage.Text = "Invalid username or password.";
-        }
-    }
-
-    private bool AuthenticateUser(string username, string password)
-    {
-        // Here, you can implement the logic to authenticate the user
-        // For demonstration purpose, let's assume we are using hardcoded values for username and password
-
-        if (username == "admin" && password == "admin123")
-        {
-            // Authentication successful
-            return true;
-        }
-        else
-        {
-            // Authentication failed
-            return false;
+            lblMessage.Text = "Invalid email or password.";
         }
     }
 }

@@ -8,13 +8,13 @@ using System.Web.UI.WebControls;
 
 public partial class UserLogin : System.Web.UI.Page
 {
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
         // Optional: You can redirect logged-in users to another page
         if (Session["LoggedInCustomerID"] != null)
         {
-            Response.Redirect("~/Welcome.aspx");
+            Response.Redirect("~/TeamMainMenu.aspx");
         }
     }
 
@@ -43,8 +43,11 @@ public partial class UserLogin : System.Web.UI.Page
         // Check if the customer exists and the password matches
         if (customer != null && customer.Password == password)
         {
-            // Redirect to the Welcome page
-            Response.Redirect("Homepage.aspx");
+            // Start the session and store the customer ID
+            Session["LoggedInCustomerID"] = customer.CustomerID;
+
+            // Redirect to the main menu page
+            Response.Redirect("TeamMainMenu.aspx");
         }
         else
         {

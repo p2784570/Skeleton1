@@ -208,7 +208,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string company, string modelName, string ram, string internalStorage, string display, string camera, string networkType, string simType, string price)
+        public string Valid(string Company, string ModelName, string Ram, string InternalStorage, string Display, string Camera, string NetworkType, string SimType, string Price)
         {
             //create a string variable to store error
             String Error = "";
@@ -301,7 +301,7 @@ namespace ClassLibrary
             throw new NotImplementedException();
         }
 
-        public string Valid(string company, string modelName, string ram, string internalStorage, string display, string camera, string networkType, string simType, string price, string quantity)
+        public string Valid(string Company, string ModelName, string Ram, string RnternalStorage, string Display, string Camera, string NetworkType, string SimType, string Price, string Quantity)
         {
             throw new NotImplementedException();
         }

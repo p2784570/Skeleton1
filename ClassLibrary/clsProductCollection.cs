@@ -54,7 +54,7 @@ namespace ClassLibrary
             //object for the data connection
             clsDataConnection DB = new clsDataConnection();
             //execute the store procedure
-            DB.Execute("spoc_ProductTable_SelectAll");
+            DB.Execute("sproc_ProductTable_SelectAll");
             //populate the array list with the data table
             PopulateArray(DB);
         }

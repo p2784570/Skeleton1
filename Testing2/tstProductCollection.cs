@@ -164,7 +164,7 @@ namespace Testing2
             //set thisproduct to test data
             AllProducts.ThisProduct = TestItem;
             //add the record
-            PrimaryKey =AllProducts.Add();
+            PrimaryKey = AllProducts.Add();
             ////set primarykey of the test data
             TestItem.ProductId = PrimaryKey;
             //modify test record
@@ -209,19 +209,19 @@ namespace Testing2
             TestItem.Price = "£450";
             TestItem.Quantity = 30;
             //set thisproduct to test data
-            AllProducts.ThisProduct = TestItem ;
+            AllProducts.ThisProduct = TestItem;
             //add the record
             PrimaryKey = AllProducts.Add();
             //set the primary key of the test data
             TestItem.ProductId = PrimaryKey;
             //find the record
-            AllProducts.ThisProduct.Find(PrimaryKey) ;
+            AllProducts.ThisProduct.Find(PrimaryKey);
             //delete the record
             AllProducts.Delete();
             //now find the record
             Boolean Found = AllProducts.ThisProduct.Find(PrimaryKey);
             //test to see that the record is not found
-            Assert.IsFalse( Found );
+            Assert.IsFalse(Found);
         }
         [TestMethod]
         public void ReportByModelNameOK()
@@ -231,7 +231,7 @@ namespace Testing2
             //apply a modelname that doesnot exist
             FilteredProducts.ReportByModelName("xxxxxx");
             //test to see that two values are the same
-            Assert.AreEqual(0, FilteredProducts.Count );
+            Assert.AreEqual(0, FilteredProducts.Count);
         }
         [TestMethod]
         public void ReportByModelNameTestDataFound()
@@ -261,7 +261,7 @@ namespace Testing2
                 OK = false;
             }
             //test to see that there are no record
-            Assert.IsTrue( OK );
+            Assert.IsTrue(OK);
         }
     }
 }

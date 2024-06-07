@@ -167,5 +167,12 @@ namespace ClassLibrary
             DB.AddParameter("@Password", mThisCustomer.Password);
             DB.Execute("sproc_tblCustomer_Update");
         }
+
+        public void Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }
 }

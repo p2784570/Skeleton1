@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CustomerTest.cs" />
     <Compile Include="OrdersTest.cs" />
+    <Compile Include="ClsCustomerCollectionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

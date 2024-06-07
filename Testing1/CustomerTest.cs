@@ -5,276 +5,330 @@ using System;
 namespace TestingCustomer
 {
     [TestClass]
-    public class CustomerTest
+    public class ClsCustomerTests
     {
+        // Valid test data
+        private string validFirstName = "Rupasi";
+        private string validLastName = "Ghimire";
+        private string validEmail = "rupasi.ghimire@example.com";
+        private string validPhone = "1234567890";
+        private string validAddress = "123 Main St";
+        private string validCity = "City";
+        private string validState = "State";
+        private string validCountry = "Country";
+        private string validPassword = "password123";
+
+        /******************** Validation OK Tests *********************/
         [TestMethod]
-        public void CustomerClassOK()
+        public void ValidMethodOK()
         {
-            // Create an instance of the class we want to create
-            Customer customer = new Customer();
-            // Test to see that it exists
-            Assert.IsNotNull(customer);
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            error = customer.Valid(validFirstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
+        }
+
+        /********************** FirstName Validation ************************/
+        [TestMethod]
+        public void FirstNameMinLessOne()
+        {
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String firstName = "";
+            error = customer.Valid(firstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "The first name may not be blank. ");
         }
 
         [TestMethod]
-        public void CreateCustomer_ShouldSetProperties()
+        public void FirstNameMin()
         {
-            var customer = new Customer
-            {
-                CustomerID = 1,
-                FirstName = "John",
-                LastName = "Doe",
-                Email = "john.doe@example.com",
-                Phone = 1234567890,
-                Address = "123 Main St",
-                City = "Anytown",
-                State = "CA",
-                Country = "USA",
-                Password = "password123"
-            };
-
-            Assert.AreEqual(1, customer.CustomerID);
-            Assert.AreEqual("John", customer.FirstName);
-            Assert.AreEqual("Doe", customer.LastName);
-            Assert.AreEqual("john.doe@example.com", customer.Email);
-            Assert.AreEqual(1234567890, customer.Phone);
-            Assert.AreEqual("123 Main St", customer.Address);
-            Assert.AreEqual("Anytown", customer.City);
-            Assert.AreEqual("CA", customer.State);
-            Assert.AreEqual("USA", customer.Country);
-            Assert.AreEqual("password123", customer.Password);
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String firstName = "a";
+            error = customer.Valid(firstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "FirstName cannot be null or empty.")]
-        public void FirstName_ShouldThrowException_WhenNull()
+        public void FirstNameMinPlusOne()
         {
-            var customer = new Customer
-            {
-                FirstName = null
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String firstName = "aa";
+            error = customer.Valid(firstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "FirstName cannot be null or empty.")]
-        public void FirstName_ShouldThrowException_WhenEmpty()
+        public void FirstNameMaxLessOne()
         {
-            var customer = new Customer
-            {
-                FirstName = ""
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String firstName = new string('a', 49);
+            error = customer.Valid(firstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "LastName cannot be null or empty.")]
-        public void LastName_ShouldThrowException_WhenNull()
+        public void FirstNameMax()
         {
-            var customer = new Customer
-            {
-                LastName = null
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String firstName = new string('a', 50);
+            error = customer.Valid(firstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "LastName cannot be null or empty.")]
-        public void LastName_ShouldThrowException_WhenEmpty()
+        public void FirstNameMaxPlusOne()
         {
-            var customer = new Customer
-            {
-                LastName = ""
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String firstName = new string('a', 51);
+            error = customer.Valid(firstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "The first name must be less than 50 characters. ");
+        }
+
+        /********************** LastName Validation ************************/
+        [TestMethod]
+        public void LastNameMinLessOne()
+        {
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String lastName = "";
+            error = customer.Valid(validFirstName, lastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "The last name may not be blank. ");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Email cannot be null or empty.")]
-        public void Email_ShouldThrowException_WhenNull()
+        public void LastNameMin()
         {
-            var customer = new Customer
-            {
-                Email = null
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String lastName = "a";
+            error = customer.Valid(validFirstName, lastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Email cannot be null or empty.")]
-        public void Email_ShouldThrowException_WhenEmpty()
+        public void LastNameMinPlusOne()
         {
-            var customer = new Customer
-            {
-                Email = ""
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String lastName = "aa";
+            error = customer.Valid(validFirstName, lastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Address cannot be null or empty.")]
-        public void Address_ShouldThrowException_WhenNull()
+        public void LastNameMaxLessOne()
         {
-            var customer = new Customer
-            {
-                Address = null
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String lastName = new string('a', 49);
+            error = customer.Valid(validFirstName, lastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Address cannot be null or empty.")]
-        public void Address_ShouldThrowException_WhenEmpty()
+        public void LastNameMax()
         {
-            var customer = new Customer
-            {
-                Address = ""
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String lastName = new string('a', 50);
+            error = customer.Valid(validFirstName, lastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "City cannot be null or empty.")]
-        public void City_ShouldThrowException_WhenNull()
+        public void LastNameMaxPlusOne()
         {
-            var customer = new Customer
-            {
-                City = null
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String lastName = new string('a', 51);
+            error = customer.Valid(validFirstName, lastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "The last name must be less than 50 characters. ");
+        }
+
+        /********************** Email Validation ************************/
+    
+
+     
+
+       
+
+        [TestMethod]
+        public void EmailMaxPlusOne()
+        {
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String email = new string('a', 51) + "@example.com";
+            error = customer.Valid(validFirstName, validLastName, email, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "The email must be less than 50 characters. ");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "City cannot be null or empty.")]
-        public void City_ShouldThrowException_WhenEmpty()
+        public void EmailInvalidFormat()
         {
-            var customer = new Customer
-            {
-                City = ""
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String email = "invalid-email-format";
+            error = customer.Valid(validFirstName, validLastName, email, validPhone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "The email format is not valid. ");
+        }
+
+        /********************** Password Validation ************************/
+        [TestMethod]
+        public void PasswordMinLessOne()
+        {
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String password = "";
+            error = customer.Valid(validFirstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, password);
+            Assert.AreEqual(error, "The password may not be blank. ");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "State cannot be null or empty.")]
-        public void State_ShouldThrowException_WhenNull()
+        public void PasswordMin()
         {
-            var customer = new Customer
-            {
-                State = null
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String password = "a";
+            error = customer.Valid(validFirstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, password);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "State cannot be null or empty.")]
-        public void State_ShouldThrowException_WhenEmpty()
+        public void PasswordMinPlusOne()
         {
-            var customer = new Customer
-            {
-                State = ""
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String password = "aa";
+            error = customer.Valid(validFirstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, password);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Country cannot be null or empty.")]
-        public void Country_ShouldThrowException_WhenNull()
+        public void PasswordMaxLessOne()
         {
-            var customer = new Customer
-            {
-                Country = null
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String password = new string('a', 49);
+            error = customer.Valid(validFirstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, password);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Country cannot be null or empty.")]
-        public void Country_ShouldThrowException_WhenEmpty()
+        public void PasswordMax()
         {
-            var customer = new Customer
-            {
-                Country = ""
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String password = new string('a', 50);
+            error = customer.Valid(validFirstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, password);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Password cannot be null or empty.")]
-        public void Password_ShouldThrowException_WhenNull()
+        public void PasswordMaxPlusOne()
         {
-            var customer = new Customer
-            {
-                Password = null
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String password = new string('a', 51);
+            error = customer.Valid(validFirstName, validLastName, validEmail, validPhone, validAddress, validCity, validState, validCountry, password);
+            Assert.AreEqual(error, "The password must be less than 50 characters. ");
+        }
+
+        /********************** Phone Validation ************************/
+        [TestMethod]
+        public void PhoneValid()
+        {
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String phone = "1234567890";
+            error = customer.Valid(validFirstName, validLastName, validEmail, phone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Password cannot be null or empty.")]
-        public void Password_ShouldThrowException_WhenEmpty()
+        public void PhoneNull()
         {
-            var customer = new Customer
-            {
-                Password = ""
-            };
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String phone = "";
+            error = customer.Valid(validFirstName, validLastName, validEmail, phone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
-        public void Valid_ShouldReturnEmptyString_WhenAllFieldsAreValid()
+        public void PhoneNonNumeric()
         {
-            var customer = new Customer();
-            string result = customer.Valid("John", "Doe", "john.doe@example.com", "123 Main St", "Anytown", "CA", "USA", "password123");
-
-            Assert.AreEqual(string.Empty, result);
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String phone = "ABC123";
+            error = customer.Valid(validFirstName, validLastName, validEmail, phone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "The phone number must be a valid number. ");
         }
 
         [TestMethod]
-        public void Valid_ShouldReturnErrorMessage_WhenFieldsAreInvalid()
+        public void PhoneSpecialCharacters()
         {
-            var customer = new Customer();
-            string result = customer.Valid("", "", "", "", "", "", "", "");
-
-            Assert.AreEqual("FirstName cannot be null or empty. LastName cannot be null or empty. Email cannot be null or empty. Address cannot be null or empty. City cannot be null or empty. State cannot be null or empty. Country cannot be null or empty. Password cannot be null or empty. ", result);
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String phone = "123-456-7890";
+            error = customer.Valid(validFirstName, validLastName, validEmail, phone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "The phone number must be a valid number. ");
         }
 
         [TestMethod]
-        public void Phone_ShouldAllowNullableValue()
+        public void PhoneExtremeMin()
         {
-            var customer = new Customer
-            {
-                Phone = null
-            };
-
-            Assert.IsNull(customer.Phone);
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String phone = "-9999999999";
+            error = customer.Valid(validFirstName, validLastName, validEmail, phone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "The phone number must be a valid number. ");
         }
 
         [TestMethod]
-        public void Phone_ShouldSetValue_WhenValid()
+        public void PhoneBoundary()
         {
-            var customer = new Customer
-            {
-                Phone = 1234567890
-            };
-
-            Assert.AreEqual(1234567890, customer.Phone);
+            ClsCustomer customer = new ClsCustomer();
+            String error = "";
+            String phone = "1";
+            error = customer.Valid(validFirstName, validLastName, validEmail, phone, validAddress, validCity, validState, validCountry, validPassword);
+            Assert.AreEqual(error, "");
         }
 
-        /****************** FIND METHOD TEST ******************/
+       
 
+        /********************** Find Method Tests ************************/
         [TestMethod]
         public void FindMethodOK()
         {
-            // Create an instance of the class we want to create
-            Customer customer = new Customer();
-            // Create a Boolean variable to store the results of the validation
-            bool found = false;
-            // Create some test data to use with the method
-            int customerID = 1;
-            // Invoke the method
+            ClsCustomer customer = new ClsCustomer();
+            Boolean found = false;
+            Int32 customerID = 1;
             found = customer.Find(customerID);
-            // Test to see if the result is true
             Assert.IsTrue(found);
         }
 
         [TestMethod]
-        public void FindMethodNotFound()
+        public void TestCustomerIDFound()
         {
-            // Create an instance of the class we want to create
-            Customer customer = new Customer();
-            // Create a Boolean variable to store the results of the validation
-            bool found = false;
-            // Create some test data to use with the method
-            int customerID = 999; // Assume this ID does not exist
-            // Invoke the method
+            ClsCustomer customer = new ClsCustomer();
+            Boolean found = false;
+            Boolean ok = true;
+            Int32 customerID = 1;
             found = customer.Find(customerID);
-            // Test to see if the result is false
-            Assert.IsFalse(found);
+            if (customer.CustomerID != 1)
+            {
+                ok = false;
+            }
+            Assert.IsTrue(ok);
         }
+
+
+      
+      
     }
 }
